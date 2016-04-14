@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<!--  User Templates -->
+
+<!-- User List Template-->
+<script type="text/ng-template" id="userlist">
+       <td><span ng-bind="user.userName" ></span></td>
+		<td><span ng-bind="user.subScription"></span></td>
+		<td><span>{{user.bookCount + user.ebookCount}}</span></td>
+		<td>
+			<button  type="button"
+				ng-click="edit(user)" class="btn btn-success custom-width">Edit</button>
+			<button  type="button"
+				ng-click="view(user)" class="btn btn-primary custom-width">View</button>
+			<button  type="button"
+				ng-click="remove(user.id)" class="btn btn-danger custom-width">Remove</button>
+			
+		</td>								
+  </script>
+<!-- User List Template End -->
+
+
+<!-- User View Template  -->
+<script type="text/ng-template" id="userView">
+<h3  style="padding-bottom: 13px; text-align: center;">User View</h3>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<span class="lead"> </span>
+	</div>
+	<div class="table-responsive">
+		<table class="table table-hover">
+			<tbody>
+				<tr>
+					<td>User Type</td>
+					<td>{{user.member?'Member':'Librarian'}}</td>
+				</tr>
+				<tr>
+					<td>Full Name</td>
+					<td>{{user.firstName +' '+user.lastName+' '+user.surname}}</td>
+				</tr>
+				<tr>
+					<td>SubScription Type:</td>
+					<td>{{user.subScription}}</td>
+				</tr>
+				<tr>
+					<td>Phone</td>
+					<td>{{user.phone}}</td>
+				</tr>
+				<tr>
+					<td>Email</td>
+					<td>{{user.email}}</td>
+				</tr>
+				<tr>
+					<td>Age</td>
+					<td>{{user.age}}</td>
+				</tr>
+				<tr>
+					<td>city</td>
+					<td>{{user.city}}</td>
+				</tr>
+				<tr>
+					<td>country</td>
+					<td>{{user.country}}</td>
+				</tr>
+				<tr>
+					<td>Book Count</td>
+					<td>{{user.bookCount}}</td>
+				</tr>
+				<tr>
+					<td>EBook Count</td>
+					<td>{{user.ebookCount}}</td>
+				</tr>
+                 <tr>
+					<td><button  type="button"
+				ng-click="addNewUser()" class="btn btn-primary custom-width">Add New User</button></td>
+				 </tr>
+			</tbody>
+		</table>
+		
+	</div>
+</div>
+</script>
+<!-- User View Template End -->
+
+<!-- User Edit Template  -->
+<script type="text/ng-template" id="userEdit">
+<h3 align="center">User Edit</h3>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<span class="lead"> </span>
+	</div>
+	<div class="table-responsive">
+		<table class="table table-hover">
+			<tbody>
+				<tr>
+					<td>User Type</td>
+					<td>{{user.member?'Member':'Librarian'}}</td>
+				</tr>
+				<tr>
+					<td>Full Name</td>
+					<td>
+						<div class="form-group">
+							<input class="form-control" placeholder="First Name"
+								ng-model="user.firstName" />
+							<input class="form-control" placeholder="Last Name"
+								ng-model="user.lastName" />
+							<input class="form-control" placeholder="Sur Name"
+								ng-model="user.surName" />
+					</td>
+				</tr>
+				<tr>
+					<td>SubScription Type:</td>
+					<td><div class="form-group">
+							<select class="form-control" ng-model="user.subScription">
+								<option value="GOLD">Gold</option>
+								<option value="SILVER">Silver</option>
+								<option value="BRONZE">Bronze</option>
+							</select>
+						</div></td>
+				</tr>
+				<tr>
+					<td>Phone</td>
+					<td><div class="form-group">
+							<input class="form-control" placeholder="Phone"
+								ng-model="user.phone" />
+						</div></td>
+				</tr>
+				<tr>
+					<td>Email</td>
+					<td><div class="form-group">
+							<input class="form-control" placeholder="Email"
+								ng-model="user.email" />
+						</div></td>
+				</tr>
+				<tr>
+					<td>Age</td>
+					<td><div class="form-group">
+							<input class="form-control" placeholder="Age" ng-model="user.age" />
+						</div></td>
+				</tr>
+				<tr>
+					<td>city</td>
+					<td><div class="form-group">
+							<input class="form-control" placeholder="city"
+								ng-model="user.city" />
+						</div></td>
+				</tr>
+				<tr>
+					<td>country</td>
+					<td><div class="form-group">
+							<input class="form-control" placeholder="Country"
+								ng-model="user.country" />
+						</div></td>
+				</tr>
+				<tr>
+					<td>Book Count</td>
+					<td>{{user.bookCount}}</td>
+				</tr>
+				<tr>
+					<td>EBook Count</td>
+					<td>{{user.ebookCount}}</td>
+				</tr>
+				<tr>
+					<td><div class="col-md-4"><button type="button" ng-click="save()"
+							class="btn btn-success  btn-lg">Save</button></div></td>
+					<td><div class="col-md-4"><button type="button" ng-click="reset()"
+							class="btn  btn-lg ">Cancel</button> </div></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+</script>
+<!--  User Edit Template End -->
+<!-- User Create Template -->
+<script type="text/ng-template" id="userCreate">
+<h3>Add User or Member</h3>
+<form>
+	<div class=" user-entry-group">
+		<div class="form-group">
+			<label>User Type </label> <select class="form-control"
+				ng-model="user.member">
+				<option value="true">Member</option>
+				<option value="false">Librarian</option>
+			</select>
+		</div>
+		<div class="form-group">
+			<label>User Name</label> <input type="text" class="form-control"
+				ng-model="user.userName" placeholder="User Name" />
+		</div>
+		<div class="form-group">
+			<label>Password</label>
+			<div class="row">
+				<div class="col-md-6">
+					<input type="password" class="form-control"
+						ng-model="user.password" placeholder="Password" />
+				</div>
+				<div class="col-md-6">
+					<input type="password" class="form-control"
+						ng-model="user.rpassword" placeholder="Confirm-Password" />
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label>Subscription Type : {{user.subScription}}</label> <select
+				class="form-control" ng-model="user.subScription">
+				<option value="GOLD">Gold</option>
+				<option value="SILVER">Silver</option>
+				<option value="BRONZE">Bronze</option>
+			</select>
+		</div>
+
+		<div>
+			<h3 align="center" style="padding: 15px">
+				<u>Personal Details</u>
+			</h3>
+		</div>
+		<div class="form-group">
+			<label>Full Name</label>
+			<div class="row">
+				<div class="col-md-4">
+					<input type="text" class="form-control" ng-model="firstName"
+						placeholder="First Name" />
+				</div>
+				<div class="col-md-4">
+					<input type="text" class="form-control" ng-model="midleName"
+						placeholder="Midle Name" />
+				</div>
+				<div class="col-md-4">
+					<input type="text" class="form-control" ng-model="surname"
+						placeholder="Sur-Name" />
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label>Age</label> <input type="text" class="form-control"
+				ng-model="age" placeholder="Age" />
+		</div>
+		<div class="form-group">
+			<label>Gender : {{user.gender}}</label> <select class="form-control"
+				ng-model="user.gender">
+				<option value="MALE">Male</option>
+				<option value="FEMALE">Female</option>
+				<option value="OTHER">Other</option>
+			</select>
+		</div>
+		<div class="form-group">
+			<label>Phone Number</label> <input type="phone" class="form-control"
+				ng-model="phone" placeholder="Phone Number" />
+		</div>
+		<div class="form-group">
+			<label>City</label> <input type="text" class="form-control"
+				ng-model="city" placeholder="City" />
+		</div>
+		<div class="form-group">
+			<label>State</label> <input type="text" class="form-control"
+				ng-model="state" placeholder="State" />
+		</div>
+		<div class="form-group">
+			<label>Country</label> <input type="text" class="form-control"
+				ng-model="country" placeholder="Country" />
+		</div>
+
+<div ng-include="'buttonsgroup'"></div>
+</form>
+</script>
+<!-- User Create Template End -->
+<!-- Member List Template  -->
+<script type="text/ng-template" id="memberList">
+<h3 style="padding-bottom: 13px; text-align: center;">Members List</h3>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<span class="lead"> </span>
+	</div>
+	<div class="table-responsive">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Type</th>
+					<th>Books</th>
+					<th width="40%"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="user in users" ng-include="'userlist'">
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+</script>
+<!-- Member List Template End -->
+</head>
+<body>
+	<div class="row" ng-show="global.showAddNewUser"
+		ng-controller="AddNewUserOrMemberController">
+		<div class="container">
+			<div class=row>
+				<div class="col-md-6">
+					<div ng-include="'userView'" ng-show="viewUser"></div>
+					<div ng-include="'userEdit'" ng-show="editUser"></div>
+					<div ng-include="'userCreate'" ng-show="createUser"></div>
+				</div>
+				<div class="col-md-6">
+					<div ng-include="'memberList'"></div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</body>
+</html>

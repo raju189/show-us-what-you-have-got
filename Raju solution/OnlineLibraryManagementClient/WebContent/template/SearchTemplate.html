@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<script type="text/ng-template" id="bookTableEdit">
+        <td><span ng-bind="book.id"></span></td>
+		<td><input ng-model="book.title" class="form-control"/></td>
+		<td><input ng-model="book.author" class="form-control"/></td>
+		<td><input ng-model="book.isdn" class="form-control"/></td>
+		<td>
+			<button  type="button"
+				ng-click="save($index)" class="btn btn-success custom-width">Save</button>
+			<button  type="button"
+				ng-click="reset()" class="btn custom-width">Cancel</button>
+		</td>							
+  </script>
+<!--  Book Table View Template -->
+<script type="text/ng-template" id="bookTableView">
+       <td><span ng-bind="book.id" ></span></td>
+		<td><span ng-bind="book.title"></span></td>
+		<td><span ng-bind="book.author"></span></td>
+		<td><span ng-bind="book.isdn"></span></td>
+		<td>
+			<button ng-show="!global.isMember" type="button"
+				ng-click="edit(book)" class="btn btn-success custom-width">Edit</button>
+			<button ng-show="!global.isMember" type="button"
+				ng-click="remove(book.id)" class="btn btn-danger custom-width">Remove</button>
+			<button ng-show="global.isMember && !b.ebook" type="button"
+				ng-click="request(book.id)" class="btn btn-primary custom-width">Request</button>
+			<button ng-show="global.isMember && b.ebook" type="button"
+				ng-click="download(book.id)" class="btn btn-info custom-width">Download</button>
+		</td>								
+  </script>
+<!--  Book Table View Template End-->
+</head>
+<body>
+	<!-- Search Row Begin -->
+	<div class="row search-block" ng-show="global.showSearch">
+		<center>
+			<h3>Search Books</h3>
+		</center>
+		<div class="row filter-block">
+			<div class="col-md-4">
+				<input type="text" ng-model="title" class="form-control"
+					placeholder="Book Title For Filter " />
+			</div>
+			<div class="col-md-4">
+				<input type="text" ng-model="author" class="form-control"
+					placeholder="Book Author For Filter" />
+			</div>
+			<div class="col-md-4">
+				<input type="text" ng-model="isdn" class="form-control"
+					placeholder="Book ISDN Code For Filter" />
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<span class="lead"> All Book and EBooks </span>
+			</div>
+			<div class="tablecontainer">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Title</th>
+							<th>Author</th>
+							<th>ISDN</th>
+							<th width="20%"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr
+							ng-repeat="book in books | filter:title |filter:author | filter:isdn"
+							ng-include="getTemplate(book)">
+
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<!-- Search Row End -->
+</body>
+</html>

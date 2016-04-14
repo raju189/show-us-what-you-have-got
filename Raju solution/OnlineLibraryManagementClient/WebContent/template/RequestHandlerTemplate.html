@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="container" ng-controller="RequestHandlerController">
+		<!--  Member Controllers Starts -->
+		<div class="row" ng-show="global.isMember && global.showAll">
+			<div class="col-md-4">
+				<h2>Search</h2>
+				<p>
+					<img src="./images/searchImage.jpg" ng-click="searchFromUser()" />
+				</p>
+			</div>
+			<div class="col-md-4">
+				<h2>Request For</h2>
+				<p>
+					<img src="./images/requestFor.jpg" ng-click="requestForBook()" />
+				</p>
+
+			</div>
+			<div class="col-md-4">
+				<h2>Request For Add New Book</h2>
+				<p>
+					<img src="./images/addNew.jpg" ng-click="requestForNewBookUser" />
+				</p>
+
+			</div>
+		</div>
+		<!--  Member Controllers End -->
+		<!--  Librarian Controllers Starts -->
+		<div class="row" ng-show="!global.isMember && global.showAll">
+			<div class="col-md-3">
+				<h2>Search</h2>
+				<p>
+					<img src="./images/searchImage.jpg" ng-click="searchFromUser()" />
+				</p>
+			</div>
+			<div class="col-md-3">
+				<h2>All User Requests</h2>
+				<p>
+					<img src="./images/requestFor.jpg" ng-click="showAllRequests()" />
+				</p>
+
+			</div>
+			<div class="col-md-3">
+				<h2>Add New Book</h2>
+				<p>
+					<img src="./images/addNew.jpg" ng-click="addNewBook()"
+						title="Add New Book" />
+				</p>
+
+			</div>
+			<div class="col-md-3">
+				<h2>Add Member</h2>
+				<p>
+					<img src="./images/registration.jpg"
+						ng-click="addNewUserOrMember()" />
+				</p>
+
+			</div>
+		</div>
+		<!--  Librarian Controllers End -->
+	</div>
+</body>
+</html>

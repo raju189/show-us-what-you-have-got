@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<!-- Book Table Edit Template -->
+<!--  Book Table Edit Template end -->
+
+
+
+<!-- Book Create Template -->
+<script type="text/ng-template" id="bookCreate">
+<h3 style="padding-bottom: 13px; text-align: center;">Add New Book</h3>
+<form>
+	<div class="form-group">
+		<label>Book Title </label> <input type="text" class="form-control"
+			ng-model="book.title" placeholder="Book Title" />
+	</div>
+	<div class="form-group">
+		<label>Book Author</label> <input type="text" class="form-control"
+			ng-model="book.author" placeholder="Book Author" />
+	</div>
+	<div class="form-group">
+		<label>ISDN Code</label> <input type="text" class="form-control"
+			ng-model="book.isdn" placeholder="Book Author" />
+	</div>
+	<div class="form-group">
+		<label>Book Type</label> <select class="form-control"
+			ng-model="book.ebook">
+			<option value="true">E-Book</option>
+			<option value="false">Physical Book</option>
+		</select>
+	</div>
+	<div class="form-group">
+		<label>OnHand Count</label> <input type="text" class="form-control"
+			ng-model="book.count" placeholder="Book Count" />
+	</div>
+	<div ng-include="'buttonsgroup'"></div>
+</form>
+</script>
+<!-- Book Create Template End -->
+</head>
+<body>
+	<div class="container">
+		<div ng-include="'bookCreate'"></div>
+	</div>
+</body>
+</html>
